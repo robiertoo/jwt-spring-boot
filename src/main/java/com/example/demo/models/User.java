@@ -12,8 +12,30 @@ public class User {
 	private Integer id;
 	private String username;
 	private String password;
+	private Integer role;
 	private String token;
 	
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+		
+	public User(String username, String password, Integer role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.role = role;
+	}
+
+
+
+	public Integer getRole() {
+		return role;
+	}
+	public void setRole(Integer role) {
+		this.role = role;
+	}
 	public Integer getId() {
 		return id;
 	}
