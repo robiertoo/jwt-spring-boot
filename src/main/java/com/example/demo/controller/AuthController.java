@@ -2,12 +2,12 @@ package com.example.demo.controller;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +29,7 @@ public class AuthController {
 	public User login(@RequestParam("username") String username, @RequestParam("password") String password) {		
 		User user = userRepository.findByUsername(username);
 		
-		if(password.equals(user.getPassword())) {
+		if(new BCryptPasswordEncoder().matches(password, user.getPassword())) {
 			String token = getJWTToken(user);
 			User userToken = new User();
 			userToken.setId(user.getId());
