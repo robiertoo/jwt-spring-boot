@@ -46,8 +46,8 @@ public class AuthController {
 		String secretKey = "mySecretKey";
 		String authority = "";
 		
-		if(user.getRole() == 1) authority = "ADMIN";
-		if(user.getRole() == 2) authority = "COMMON_USER";
+		if(user.getRole().getId() == 1) authority = "ADMIN";
+		if(user.getRole().getId() == 2) authority = "COMMON_USER";
 		
 		List<GrantedAuthority> grantedAuthorities = AuthorityUtils
 				.commaSeparatedStringToAuthorityList(authority);
